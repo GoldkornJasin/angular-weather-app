@@ -1,0 +1,45 @@
+<app-card
+  [isLoading]="isLoading"
+  title="{{ 'current_weather' | transloco }}"
+  subtitle="{{
+    'for_location'
+      | transloco
+        : {
+            name: location?.name,
+            region: location?.region,
+            country: location?.country,
+            timezone: location?.tz_id
+          }
+  }}"
+>
+  <div class="flex gap-4">
+    <div class="flex gap-4 items-center">
+      <app-weather-icon [iconSrc]="currentWeather.icon"></app-weather-icon>
+      <span class="text-4xl">{{ currentWeather.temperatureCelsius }}°C</span>
+    </div>
+
+    <div class="inline-block w-0.5 self-stretch bg-gray-300"></div>
+
+    <div class="flex flex-col justify-between">
+      <p class="text-xs text-gray-500">
+        {{ "feelsLikeCelsius" | transloco }}:
+        {{ currentWeather.feelsLikeCelsius }}°C
+      </p>
+      <p class="text-xs text-gray-500">
+        {{ "chanceOfRainPercent" | transloco }}:
+        {{ currentWeather.chanceOfRainPercent }}°C
+      </p>
+      <p class="text-xs text-gray-500">
+        {{ "cloudinessPercent" | transloco }}:
+        {{ currentWeather.cloudinessPercent }}%
+      </p>
+      <p class="text-xs text-gray-500">
+        {{ "windSpeedKpH" | transloco }}: {{ currentWeather.windSpeedKpH }} km/h
+      </p>
+      <p class="text-xs text-gray-500">
+        {{ "windSpeedDirection" | transloco }}:
+        {{ currentWeather.windSpeedDirection }}
+      </p>
+    </div>
+  </div>
+</app-card>

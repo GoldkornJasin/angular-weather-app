@@ -1,0 +1,37 @@
+<app-card [isLoading]="isLoading">
+  <form (ngSubmit)="onSubmit()" class="flex gap-6 items-end">
+    <div>
+      <label class="block text-sm font-bold mb-2" for="date">
+        {{ "date" | transloco }}
+      </label>
+      <input
+        [(ngModel)]="date"
+        type="date"
+        id="date"
+        name="date"
+        class="shadow border rounded w-full py-2 px-3"
+      />
+    </div>
+
+    <div>
+      <label class="block text-sm font-bold mb-2" for="place">
+        {{ "place" | transloco }}
+      </label>
+      <input
+        [(ngModel)]="place"
+        type="text"
+        id="place"
+        name="place"
+        placeholder="Heidelberg"
+        class="shadow border rounded w-full py-2 px-3"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition"
+    >
+      {{ "search" | transloco }}
+    </button>
+  </form>
+</app-card>

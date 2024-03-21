@@ -1,0 +1,22 @@
+<div class="min-h-screen min-w-screen bg-gray-100 flex flex-col p-8 gap-8">
+  <app-user-input
+    [date]="(startDate | date: 'yyyy-MM-dd') ?? ''"
+    [place]="place"
+    (searchStarted)="searchStarted($event)"
+    [isLoading]="(isLoadingDebounced$ | async) ?? false"
+  ></app-user-input>
+
+  <app-current-weather
+    *ngIf="currentData$ | async as currentWeatherVM"
+    [currentWeather]="currentWeatherVM"
+    [isLoading]="(isLoadingDebounced$ | async) ?? false"
+    [location]="locationData$ | async"
+  ></app-current-weather>
+
+  <app-forecast
+    *ngIf="forecastData$ | async as forecastData"
+    [forecastData]="forecastData"
+    [isLoading]="(isLoadingDebounced$ | async) ?? false"
+    [location]="locationData$ | async"
+  ></app-forecast>
+</div>

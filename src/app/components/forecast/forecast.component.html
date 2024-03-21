@@ -1,0 +1,58 @@
+<ng-container *ngIf="forecastData?.[selectedDayIndex] as selectedDay">
+  <app-card
+    *ngIf="forecastData.length > 0"
+    title="{{
+      'forecast_for_date'
+        | transloco: { date: selectedDay.date | date: 'dd.MM.YYYY' }
+    }}"
+    subtitle="{{
+      'for_location'
+        | transloco
+          : {
+              name: location?.name,
+              region: location?.region,
+              country: location?.country,
+              timezone: location?.tz_id
+            }
+    }}"
+    [isLoading]="isLoading"
+  >
+    <div class="flex justify-between divide-x">
+      <div
+        *ngFor="let timeSlot of selectedDay.aggregatedTimeSlots"
+        class="p-4 w-full items-center flex flex-col"
+        data-cy="time-slot-detail"
+      >
+        <app-weather-icon [iconSrc]="timeSlot.icon"></app-weather-icon>
+        <p class="text-center text-lg mt-1">
+          {{ timeSlot.time }} {{ "oClock" | transloco }}
+        </p>
+        <p class="text-gray-500 inline-block">
+          {{ "temperatureCelsius" | transloco }}:
+          {{ timeSlot.temperatureCelsius }}°C
+        </p>
+        <p class="text-gray-500 inline-block">
+          {{ "feelsLikeCelsius" | transloco }}:
+          {{ timeSlot.feelsLikeCelsius }}°C
+        </p>
+        <p class="text-gray-500 inline-block">
+          {{ "chanceOfRainPercent" | transloco }}:
+          {{ timeSlot.chanceOfRainPercent }}%
+        </p>
+        <p class="text-gray-500 inline-block">
+          {{ "cloudinessPercent" | transloco }}:
+          {{ timeSlot.cloudinessPercent }}%
+        </p>
+        <p class="text-gray-500 inline-block">
+          {{ "windSpeedKpH" | transloco }}: {{ timeSlot.windSpeedKpH }} km/h
+        </p>
+      </div>
+    </div>
+
+    <app-select-day
+      [forecastData]="forecastData"
+      [selectedDay]="selectedDayIndex"
+      (daySelected)="selectedDayIndex = $event"
+    ></app-select-day>
+  </app-card>
+</ng-container>

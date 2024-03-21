@@ -1,0 +1,17 @@
+<div class="flex gap-4">
+  <div
+    data-cy="selectable-day"
+    *ngFor="let forecast of forecastData; let i = index"
+    class="flex flex-col items-center border-2 border-gray-300 p-4 cursor-pointer shadow hover:shadow-lg hover:bg-gray-50 transition"
+    [class.bg-gray-100]="i === selectedDay"
+    (click)="daySelected.emit(i)"
+    (keydown)="daySelected.emit(i)"
+    tabindex="0"
+  >
+    <app-weather-icon [iconSrc]="forecast.conditionIcon"></app-weather-icon>
+    <p class="font-semibold mt-2">{{ forecast.date | date: "dd.MM" }}</p>
+    <p class="text-sm text-gray-500">
+      {{ forecast.minTempCelsius }}°C | {{ forecast.maxTempCelsius }}°C
+    </p>
+  </div>
+</div>

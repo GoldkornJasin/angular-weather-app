@@ -1,0 +1,15 @@
+{
+  "search": "Suchen",
+  "place": "Ort",
+  "date": "Datum",
+  "oClock": "Uhr",
+  "temperatureCelsius": "Temperatur",
+  "feelsLikeCelsius": "Gefühlt wie",
+  "windSpeedKpH": "Wind",
+  "chanceOfRainPercent": "Niederschlag",
+  "cloudinessPercent": "Wolken",
+  "windSpeedDirection": "Windrichtung",
+  "current_weather": "Wetter aktuell",
+  "forecast_for_date": "Vorhersage für den {{ date }}",
+  "for_location": "Für {{ name }}, {{ region }}, {{country}} in {{timezone}}"
+}
