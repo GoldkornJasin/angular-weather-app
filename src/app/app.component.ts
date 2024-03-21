@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   public isLoading$ = new BehaviorSubject<boolean>(false);
 
   public isLoadingDebounced$ = this.isLoading$.pipe(
-    debounceTime(50),
+    debounceTime(100),
     distinctUntilChanged(),
   );
 

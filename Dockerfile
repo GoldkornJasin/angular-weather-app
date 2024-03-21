@@ -6,13 +6,15 @@ RUN npm install -g npm@10.2.4 && npm install -g @angular/cli && apt-get -o Acqui
 
 WORKDIR /app
 
+COPY . .
+
 RUN npm install
 
 RUN npm run build
 
 # Stage 2: Serve the app using Nginx
 FROM nginx:1.17.1-alpine
-COPY --from=build /app/dist/TecCheck-Frontend /usr/share/nginx/html
+COPY --from=build /app/dist/angular-weather-app/browser /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
